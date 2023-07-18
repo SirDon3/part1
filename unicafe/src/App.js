@@ -13,6 +13,19 @@ const Average = ({total, avg }) => <p>Average : {total / avg}</p>
 
 const Percentage = ({part, whole }) => <p>Percentage : {part / whole * 100}%</p>
 
+const Statistics = (props) => {
+
+  console.log(props)
+
+  return(
+    <div>
+        
+        <Percentage part={props.n1} whole={props.n2}></Percentage>
+  
+   </div>
+  )
+}
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
@@ -29,6 +42,8 @@ const App = () => {
   const handleBadClick = () => setBad(bad + 1)
   const all = good + neutral + bad 
   const avg = 3
+  const n = 5
+  const n1 = 10
 
 
   return (
@@ -47,6 +62,10 @@ const App = () => {
       <Total all={all}></Total> 
       <Average total={all} avg={avg}></Average>
       <Percentage part={good} whole={all}></Percentage>
+      <Statistics n1={n} n2={n1}></Statistics>
+      
+
+
       
     </div>
   )
