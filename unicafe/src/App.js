@@ -16,6 +16,15 @@ const Percentage = ({part, whole }) => <p>Percentage : {part / whole * 100}%</p>
 const Statistics = (props) => {
 
   console.log(props)
+
+  if (props.totalAll === 0) {
+    return (
+      <div>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
+
   const avg = 3
 
   return(
