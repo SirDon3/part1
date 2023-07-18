@@ -16,11 +16,19 @@ const Percentage = ({part, whole }) => <p>Percentage : {part / whole * 100}%</p>
 const Statistics = (props) => {
 
   console.log(props)
+  const avg = 3
 
   return(
     <div>
-        
-        <Percentage part={props.n1} whole={props.n2}></Percentage>
+
+        <Heading text = "Statistics"></Heading>
+
+        <Content ratingValue={props.contentGoodrv} text={props.contentGoodtxt}></Content>
+        <Content ratingValue={props.contentNeutralrv} text={props.contentNeutraltxt}></Content>
+        <Content ratingValue={props.contentBadrv} text={props.contentBadtxt}></Content>
+        <Total all={props.totalAll}></Total>
+        <Average total={props.avarageAll} avg={avg}></Average>
+        <Percentage part={props.percentagePart} whole={props.percentagewhole}></Percentage>
   
    </div>
   )
@@ -52,17 +60,18 @@ const App = () => {
 
       <Button handleClick={handleGoodClick} text = {Good}></Button>
       <Button handleClick={handleNeutralClick} text = {Neutral}></Button>
-      <Button handleClick={handleBadClick} text = {Bad}></Button>
-      
-      <Heading text = "Statistics"></Heading>
+      <Button handleClick={handleBadClick} text = {Bad}></Button> 
+    
+      <Statistics 
+                  contentGoodrv={good} contentGoodtxt={Good}
+                  contentNeutralrv={neutral} contentNeutraltxt={Neutral}
+                  contentBadrv={bad} contentBadtxt={Bad}
+                  totalAll={all}
+                  avarageAll={all} 
+                  percentagePart={good} percentagewhole={all}
 
-      <Content ratingValue={good} text={Good}></Content>
-      <Content ratingValue={neutral} text={Neutral}></Content>
-      <Content ratingValue={bad} text={Bad}></Content>
-      <Total all={all}></Total> 
-      <Average total={all} avg={avg}></Average>
-      <Percentage part={good} whole={all}></Percentage>
-      <Statistics n1={n} n2={n1}></Statistics>
+      > 
+      </Statistics>
       
 
 
