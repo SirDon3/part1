@@ -2,9 +2,8 @@ import { useState } from 'react'
 
 
 const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button> 
-
 const AnecdotesRef = ({text}) => <p>{text}</p>
-
+const Heading = ({text}) => <h1>{text}</h1>
 const Votetxt = ({text, vote, text2}) => <p>{text} {vote} {text2}</p>
 
 const App = () => {
@@ -28,6 +27,11 @@ const App = () => {
   const txtVote = "Vote"
   const vtxt1 = "This anecdote has : "
   const vtxt2 = "votes"
+  const vtxt3 = "has"
+  const heading1 = "Anecdote of the day"
+  const heading2 = "Anecdote with the most votes"
+
+  
 
   function HandleClick (){
 
@@ -35,11 +39,11 @@ const App = () => {
 
     const RNumber = Math.floor(Math.random() * (Max - 0)) + 0
     setSelected(RNumber)
-    console.log(RNumber)
+    // console.log(RNumber)
 
   }
 
-  console.log(selected)
+ 
 
 
 
@@ -47,21 +51,25 @@ const HandleVoteClick = () => {
   const votesCopy = [...votes]
   votesCopy[selected] += 1
   setVotes(votesCopy)
-  console.log(votes)
+  // console.log(votes)
   
 }
   
-console.log(votes)
+const voteOfDay = votes.indexOf(Math.max(...votes))
+// console.log(votes)
 
   return (
     <div>
 
-
+    <Heading text={heading1}></Heading>
     <AnecdotesRef text={anecdotes[selected]}></AnecdotesRef>
     <Votetxt text={vtxt1} vote={votes[selected]} text2={vtxt2}></Votetxt>
     <Button handleClick={HandleVoteClick} text = {txtVote}></Button>
     <Button handleClick={HandleClick} text = {txt}></Button>
-    
+    <Heading text={heading2}></Heading>
+    <AnecdotesRef text={anecdotes[voteOfDay]}></AnecdotesRef>
+    <Votetxt text={vtxt3} vote={votes[voteOfDay]} text2={vtxt2}></Votetxt>
+
      
     </div>
   )
