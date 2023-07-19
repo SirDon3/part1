@@ -5,6 +5,8 @@ const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</
 
 const AnecdotesRef = ({text}) => <p>{text}</p>
 
+const Votetxt = ({text, vote, text2}) => <p>{text} {vote} {text2}</p>
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -18,20 +20,48 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
-  const Max = anecdotes.length
-  const RNumber = Math.floor(Math.random() * (Max - 0)) + 0
-  const txt = "Next Anecdote"
-  console.log(RNumber)
 
-  const HandleClick = () => setSelected(RNumber)
+  const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0, 0])
+
+  
+  const txt = "Next Anecdote"
+  const txtVote = "Vote"
+  const vtxt1 = "This anecdote has : "
+  const vtxt2 = "votes"
+
+  function HandleClick (){
+
+    const Max = anecdotes.length
+
+    const RNumber = Math.floor(Math.random() * (Max - 0)) + 0
+    setSelected(RNumber)
+    console.log(RNumber)
+
+  }
+
   console.log(selected)
+
+
+
+const HandleVoteClick = () => {
+  const votesCopy = [...votes]
+  votesCopy[selected] += 1
+  setVotes(votesCopy)
+  console.log(votes)
+  
+}
+  
+console.log(votes)
 
   return (
     <div>
 
 
-    <AnecdotesRef text={anecdotes[RNumber]}></AnecdotesRef>
+    <AnecdotesRef text={anecdotes[selected]}></AnecdotesRef>
+    <Votetxt text={vtxt1} vote={votes[selected]} text2={vtxt2}></Votetxt>
+    <Button handleClick={HandleVoteClick} text = {txtVote}></Button>
     <Button handleClick={HandleClick} text = {txt}></Button>
+    
      
     </div>
   )
